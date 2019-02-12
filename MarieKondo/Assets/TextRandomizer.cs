@@ -8,9 +8,10 @@ public class TextRandomizer : MonoBehaviour {
 
     public string[] goodOnes;
     public string[] badOnes;
-    int good, stringToChoose;
+    public int good, stringToChoose;
     Text myText;
 
+    public bool Left;
 
 	// Use this for initialization
 	void Start () {
@@ -20,8 +21,15 @@ public class TextRandomizer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (Input.GetMouseButtonDown(0) && Left)
+        {
+            SelectQuote();
+        }
+        if (Input.GetMouseButtonDown(1) && !Left)
+        {
+            SelectQuote();
+        }
+    }
 
     void SelectQuote () {
         good = Mathf.RoundToInt(Random.value);
@@ -35,5 +43,9 @@ public class TextRandomizer : MonoBehaviour {
             stringToChoose = Random.Range(0, badOnes.Length);
             myText.text = badOnes[stringToChoose];
         }
+    }
+    int GetValue()
+    {
+        return good;
     }
 }
